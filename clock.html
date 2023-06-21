@@ -20,6 +20,10 @@
         drawClock();
 
         function drawClock(){
+            drawnFace(ctx,radius);
+            drawNumbers(ctx,radius);
+        }
+        function drawnFace(ctx,radius){
             ctx.beginPath();
             ctx.arc(0,0,radius,0,2*Math.PI);
             ctx.fillStyle="green";
@@ -34,8 +38,27 @@
             ctx.stroke();
             ctx.beginPath();
             ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
-            ctx.fillStyle="blue";
+            ctx.fillStyle="white";
             ctx.fill();
+        }
+        function drawNumbers(cts,radius){
+            let ang;
+            let num;
+            ctx.font = radius * 0.15 + "px arial";
+            ctx.textBaseline = "middle";
+            ctx.textAlign = "center";
+            num = 1;
+            while(num <=12){
+                ang = num * Math.PI / 6;
+                ctx.rotate(ang);
+                ctx.translate(0, -radius * 0.85);
+                ctx.rotate(-ang);
+                ctx.fillText(num.toString(), 0, 0);
+                ctx.rotate(ang);
+                ctx.translate(0, radius * 0.85);
+                ctx.rotate(-ang);
+                num++;
+            }
         }
     </script>
 </body>
